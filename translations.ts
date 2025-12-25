@@ -90,7 +90,7 @@ export const translations = {
       subtitle: "宁静的避风港",
       title: "新红灯笼\n足浴",
       description: "在巴比伦中心体验正宗的亚洲足底按摩和身体护理。恢复平衡，焕发精神。",
-      navigate: "导航至会所",
+      navigate: "导航",
       openToday: "今日营业至晚上 8:30"
     },
     services: {
