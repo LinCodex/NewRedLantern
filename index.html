@@ -19,14 +19,14 @@
     <meta property="og:url" content="https://newredlanternreflexology.com/">
     <meta property="og:title" content="New Red Lantern Foot Reflexology | Best Massage Spa in Babylon, NY">
     <meta property="og:description" content="Relax and rejuvenate with authentic Asian foot reflexology and bodywork in the heart of Babylon. 105 E Main St. Call (631) 418-5517.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?q=80&w=1200&auto=format&fit=crop">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://newredlanternreflexology.com/">
     <meta property="twitter:title" content="New Red Lantern Foot Reflexology | Best Massage Spa in Babylon, NY">
     <meta property="twitter:description" content="Relax and rejuvenate with authentic Asian foot reflexology and bodywork in the heart of Babylon. 105 E Main St. Call (631) 418-5517.">
-    <meta property="twitter:image" content="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=1200&auto=format&fit=crop">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?q=80&w=1200&auto=format&fit=crop">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='50' dominant-baseline='central' text-anchor='middle' font-size='80' font-family='serif' font-weight='bold' fill='%23D60000'>RL</text></svg>" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,6 +37,8 @@
           extend: {
             colors: {
               'lantern-red': '#D60000', // Standard bright red
+              'lantern-soft-red': '#E55B5B', // Lighter red
+              'lantern-magenta': '#C91B48', // Magenta Red (Rubine)
               'lantern-black': '#111111', // Deep black
             },
             fontFamily: {
@@ -63,14 +65,27 @@
       body {
         background-color: #ffffff;
       }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?deps=react@18.3.1",
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1?deps=react@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "@vercel/analytics/react": "https://esm.sh/@vercel/analytics@1.4.1/react?deps=react@18.3.1,react-dom@18.3.1",
+    "@vercel/analytics/": "https://esm.sh/@vercel/analytics@^1.6.1/"
   }
 }
 </script>
@@ -81,7 +96,7 @@
   "@context": "https://schema.org",
   "@type": "DaySpa",
   "name": "New Red Lantern Foot Reflexology",
-  "image": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=1920&auto=format&fit=crop",
+  "image": "https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?q=80&w=1920&auto=format&fit=crop",
   "@id": "https://newredlanternreflexology.com",
   "url": "https://newredlanternreflexology.com",
   "telephone": "+16314185517",

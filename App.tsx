@@ -7,6 +7,7 @@ import InfoSection from './components/InfoSection';
 import Footer from './components/Footer';
 import StickyFooter from './components/StickyFooter';
 import { LanguageProvider } from './LanguageContext';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         </main>
         <Footer />
         <StickyFooter />
+        <Analytics />
       </div>
     </LanguageProvider>
   );
