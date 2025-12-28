@@ -4,86 +4,116 @@ import { BUSINESS_INFO } from '../constants';
 import { useLanguage } from '../LanguageContext';
 
 const HERO_IMAGES = [
-  "https://i.ibb.co/Q3GggpMg/free-photo-of-people-during-feet-massage.jpg",
-  "https://i.ibb.co/TqvQVZyb/images.jpg",
-  "https://i.ibb.co/39xLBHkQ/t2001x1212.jpg"
+  "https://i.postimg.cc/jdxmFMNy/Gemini-Generated-Image-byj62lbyj62lbyj6.png",
+  "https://i.postimg.cc/pTK4g7sb/Gemini-Generated-Image-jea9sjjea9sjjea9.png",
+  "https://i.postimg.cc/sDjqNTSW/Gemini-Generated-Image-petglppetglppetg.png"
+];
+
+const FALLBACK_IMAGES = [
+  "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=1920&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1920&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1920&auto=format&fit=crop"
 ];
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance carousel
+  // Auto-advance carousel every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 3000); // 3 seconds per slide
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.target as HTMLImageElement;
+    const index = parseInt(target.getAttribute('data-index') || '0');
+    
+    // If the provided image fails, switch to the reliable Unsplash fallback
+    if (!target.src.includes('unsplash')) {
+        target.src = FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
+    }
+  };
+
   return (
-    <section id="home" className="relative h-[65vh] sm:h-[70vh] flex items-center justify-center bg-gray-900 overflow-hidden group">
+    <section id="home" className="relative h-[75vh] flex items-center justify-center bg-lantern-black overflow-hidden">
       {/* Background Carousel */}
       {HERO_IMAGES.map((img, index) => (
         <div 
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentIndex ? 'opacity-100' : 'opacity-0'
+            index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
           }`}
         >
           <img 
             src={img} 
-            alt={`Foot Reflexology Ambience ${index + 1}`} 
-            className="w-full h-full object-cover opacity-70"
+            data-index={index}
+            alt={`Spa Ambience ${index + 1}`} 
+            className={`w-full h-full object-cover transition-transform duration-[4000ms] ease-linear ${
+              index === currentIndex ? 'scale-110' : 'scale-100'
+            }`}
+            onError={handleImageError}
           />
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30"></div>
+          {/* Advanced Overlay: Dark gradient at top/bottom, clear in middle */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/80"></div>
         </div>
       ))}
 
-      {/* Dots Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      {/* Navigation Dots */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-4">
         {HERO_IMAGES.map((_, index) => (
-          <div
+          <button
             key={index}
+            onClick={() => setCurrentIndex(index)}
             className={`h-1.5 rounded-full transition-all duration-500 ${
-              index === currentIndex ? 'bg-lantern-red w-8' : 'bg-white/40 w-2'
+              index === currentIndex ? 'bg-lantern-red w-10' : 'bg-white/30 w-3 hover:bg-white/50'
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto w-full">
-        <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight shadow-sm animate-fade-in-up opacity-0 [animation-delay:300ms] text-white">
-          {t('hero.title')}
+      <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto w-full">
+        <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-bold mb-6 leading-[1.1] animate-fade-in-up opacity-0 [animation-delay:400ms] tracking-tight drop-shadow-2xl">
+          {t('hero.title').split('\n').map((line, i) => (
+            <React.Fragment key={i}>
+              {line}
+              {i === 0 && <br className="hidden sm:block" />}
+            </React.Fragment>
+          ))}
         </h1>
-        <p className="font-sans text-base sm:text-xl text-gray-200 mb-6 sm:mb-8 max-w-2xl mx-auto font-medium animate-fade-in-up opacity-0 [animation-delay:600ms] px-2">
+        
+        <p className="font-sans text-lg sm:text-2xl text-gray-100 mb-12 max-w-2xl mx-auto font-light animate-fade-in-up opacity-0 [animation-delay:600ms] leading-relaxed drop-shadow-lg">
           {t('hero.description')}
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center animate-fade-in-up opacity-0 [animation-delay:800ms]">
+        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-fade-in-up opacity-0 [animation-delay:800ms]">
           <a 
             href={`tel:${BUSINESS_INFO.phone}`}
-            className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-lantern-red text-white font-bold rounded-full hover:bg-white hover:text-lantern-red transition-all duration-300 shadow-lg flex items-center justify-center gap-2 border-2 border-lantern-red"
+            className="w-full sm:w-auto px-12 py-5 bg-lantern-red text-white font-bold rounded-full hover:bg-white hover:text-lantern-red hover:scale-105 transition-all duration-300 shadow-[0_10px_30px_rgba(214,0,0,0.3)] flex items-center justify-center gap-3 border-2 border-lantern-red text-lg uppercase tracking-wider"
           >
-            <Phone size={18} />
-            {BUSINESS_INFO.phoneDisplay}
+            <Phone size={22} />
+            {t('nav.call')}
           </a>
           <a 
             href={BUSINESS_INFO.mapsUrl}
             target="_blank"
             rel="noreferrer"
-            className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-lantern-black transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm"
+            className="w-full sm:w-auto px-12 py-5 border-2 border-white/60 text-white font-bold rounded-full hover:bg-white hover:text-lantern-black hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 backdrop-blur-md text-lg uppercase tracking-wider"
           >
-            <MapPin size={18} />
+            <MapPin size={22} />
             {t('hero.navigate')}
           </a>
         </div>
         
-        <div className="mt-6 sm:mt-8 text-xs sm:text-base text-white font-medium flex items-center justify-center gap-2 animate-fade-in-up opacity-0 [animation-delay:1000ms] bg-black/40 py-1.5 px-3 rounded-full inline-flex backdrop-blur-md border border-white/10">
-            {/* Green dot for open status */}
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
+        <div className="mt-12 text-sm sm:text-base text-white/90 font-medium flex items-center justify-center gap-3 animate-fade-in-up opacity-0 [animation-delay:1000ms]">
+            <span className="flex h-3 w-3 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
             {t('hero.openToday')}
         </div>
       </div>

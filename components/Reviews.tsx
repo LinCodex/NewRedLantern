@@ -1,8 +1,16 @@
+
 import React, { useState } from 'react';
 import { Star, Quote, ChevronDown, ChevronUp } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
-const ReviewCard = ({ review }: { review: any }) => {
+// Defining an interface for the review object to improve type safety
+interface Review {
+  name: string;
+  key: string;
+}
+
+// Using React.FC for ReviewCard to fix the 'key' prop TypeScript error
+const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
     const { t } = useLanguage();
     const [isExpanded, setIsExpanded] = useState(false);
     const text = t(`reviews.items.${review.key}`);
@@ -57,7 +65,7 @@ const ReviewCard = ({ review }: { review: any }) => {
 const Reviews: React.FC = () => {
   const { t } = useLanguage();
 
-  const reviewsList = [
+  const reviewsList: Review[] = [
     { name: "Amanda Warren", key: "amanda" },
     { name: "Paul", key: "paul" },
     { name: "Christine Simpson", key: "christine" },
