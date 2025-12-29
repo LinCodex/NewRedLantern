@@ -1,5 +1,5 @@
 import { BusinessInfo, Hours, ServiceItem } from './types';
-import { Hand, Flame, Sparkles, Zap } from 'lucide-react';
+import { Footprints, Waves, Flame, Aperture } from 'lucide-react';
 
 export const BUSINESS_INFO: BusinessInfo = {
   name: "New Red Lantern Foot Reflexology",
@@ -22,27 +22,27 @@ export const BUSINESS_HOURS: Hours[] = [
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'aromatherapy',
-    title: '', // Text moved to translations
+    id: 'foot-reflexology',
+    title: '',
+    description: '',
+    icon: Footprints
+  },
+  {
+    id: 'body-work',
+    title: '',
+    description: '',
+    icon: Waves
+  },
+  {
+    id: 'hot-stone',
+    title: '',
     description: '',
     icon: Flame
   },
   {
-    id: 'massage-combos',
+    id: 'traditional-cupping',
     title: '',
     description: '',
-    icon: Hand
-  },
-  {
-    id: 'massage-facial',
-    title: '',
-    description: '',
-    icon: Sparkles
-  },
-  {
-    id: 'facial-treatments',
-    title: '',
-    description: '',
-    icon: Zap
+    icon: Aperture
   }
 ];

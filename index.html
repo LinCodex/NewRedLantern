@@ -36,10 +36,11 @@
         theme: {
           extend: {
             colors: {
-              'lantern-red': '#D60000', // Standard bright red
-              'lantern-soft-red': '#E55B5B', // Lighter red
-              'lantern-magenta': '#C91B48', // Magenta Red (Rubine)
-              'lantern-black': '#111111', // Deep black
+              'lantern-red': '#D60000',
+              'lantern-soft-red': '#E55B5B',
+              'lantern-magenta': '#C91B48',
+              'lantern-black': '#111111',
+              'lantern-gold': '#C5A059',
             },
             fontFamily: {
               serif: ['Cinzel', 'serif'],
@@ -47,12 +48,27 @@
             },
             keyframes: {
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              lanternGlow: {
+                '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                '50%': { opacity: '0.7', transform: 'scale(1.1)' },
+              },
+              shimmer: {
+                '0%': { transform: 'translateX(-100%) skewX(-15deg)' },
+                '100%': { transform: 'translateX(300%) skewX(-15deg)' }
               }
             },
             animation: {
-              'fade-in-up': 'fadeInUp 1s ease-out forwards',
+              'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'float': 'float 6s ease-in-out infinite',
+              'lantern-glow': 'lanternGlow 8s ease-in-out infinite',
+              'shimmer': 'shimmer 4s infinite cubic-bezier(0.4, 0, 0.2, 1)',
             }
           },
         },
@@ -63,16 +79,39 @@
         scroll-behavior: smooth;
       }
       body {
-        background-color: #ffffff;
+        background-color: #fcfaf7;
+        overflow-x: hidden;
       }
-      /* Hide scrollbar for Chrome, Safari and Opera */
+      /* Rice Paper Texture */
+      .bg-paper {
+        background-image: url('https://www.transparenttextures.com/patterns/rice-paper-2.png');
+      }
+      /* Noise Grain */
+      .bg-noise {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.15;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D60000;
+        border-radius: 10px;
+      }
       .no-scrollbar::-webkit-scrollbar {
           display: none;
       }
-      /* Hide scrollbar for IE, Edge and Firefox */
       .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
       }
     </style>
   <script type="importmap">
@@ -90,7 +129,6 @@
 }
 </script>
 
-<!-- JSON-LD Structured Data for Local Business SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -108,36 +146,13 @@
     "addressRegion": "NY",
     "postalCode": "11702",
     "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 40.6971957,
-    "longitude": -73.3215329
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "09:30",
-      "closes": "20:30"
-    }
-  ],
-  "sameAs": [
-    "https://www.google.com/maps/place/New+Red+Lantern+Foot+Reflexology/@40.6971957,-73.3241132,17z/data=!4m16!1m9!3m8!1s0x89e9d3d8c2f8fd9f:0x5591986e048d109f!2sNew+Red+Lantern+Foot+Reflexology!8m2!3d40.6971957!4d-73.3215329!9m1!1b1!16s%2Fg%2F11h02dxnll"
-  ]
+  }
 }
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
+  <body class="bg-paper">
+    <div class="bg-noise"></div>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

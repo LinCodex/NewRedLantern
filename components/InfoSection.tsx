@@ -73,13 +73,13 @@ const InfoSection: React.FC = () => {
                      </a>
                 </div>
                 
-                {/* Google Maps Embed */}
+                {/* Google Maps Embed - Set to loading="eager" for instant load */}
                 <div className="rounded-xl overflow-hidden shadow-2xl border border-white/20 h-64 sm:h-80 relative bg-gray-800">
                     <iframe 
                         width="100%" 
                         height="100%" 
                         style={{ border: 0 }} 
-                        loading="lazy" 
+                        loading="eager" 
                         allowFullScreen
                         referrerPolicy="no-referrer-when-downgrade"
                         src="https://maps.google.com/maps?q=New+Red+Lantern+Foot+Reflexology,105+E+Main+St,Babylon,NY+11702&t=&z=15&ie=UTF8&iwloc=&output=embed"

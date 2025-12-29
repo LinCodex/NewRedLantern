@@ -9,32 +9,31 @@ export const translations = {
       map: "Map"
     },
     hero: {
-      subtitle: "Sanctuary of Peace",
       title: "New Red Lantern\nFoot Reflexology",
       description: "Experience authentic Asian reflexology and bodywork in the heart of Babylon. Restore your balance and rejuvenate your spirit.",
-      navigate: "Navigate to Spa",
+      navigate: "Navigate",
       openToday: "Open Today until 8:30 PM"
     },
     services: {
       title: "Our Services",
-      description: "We offer specialized treatments combining traditional techniques with modern relaxation therapy.",
+      description: "We specialize in time-honored Asian therapeutic techniques designed to promote healing, circulation, and total relaxation.",
       note: "Walk-ins are welcome, but appointments are recommended to ensure availability.",
       items: {
-        aromatherapy: {
-          title: "Aromatherapy",
-          desc: "1 Hour Session (Body or Foot).\n\nScents: Apricot Fig, French Rose, Jasmine Gardenia.\n\nBenefits: Boosts immunity, improves sleep, reduces stress, and aids in detoxification."
+        footReflexology: {
+          title: "Authentic Foot Reflexology",
+          desc: "A classical pressure-point therapy focused on the feet. By stimulating specific reflex zones, we help balance your body's energy and improve organ function."
         },
-        massageCombos: {
-          title: "Signature Massage Combos",
-          desc: "Combo A: 60 mins Body + 30 mins Foot + Hand Mask\nCombo B: 30 mins Body + 30 mins Foot + Hand Mask\nCombo C: 45 mins Body + 45 mins Foot + Hand/Eye Mask"
+        bodyWork: {
+          title: "Full Body Deep Tissue",
+          desc: "A therapeutic body massage incorporating traditional Tui Na techniques. We focus on muscle knots and tension to restore mobility and relieve chronic pain."
         },
-        massageFacial: {
-          title: "Massage & Facial Combos",
-          desc: "Combo D: 30 mins Foot + 30 mins Facial\nCombo E: 30 mins Body + 30 mins Facial\nCombo F: 60 mins Body + 30 mins Facial\nCombo G: 60 mins Body + 30 mins Foot + 30 mins Facial"
+        hotStone: {
+          title: "Hot Stone Therapy",
+          desc: "Smooth, heated basalt stones are placed on key points of the body. The heat penetrates deep into muscle layers for profound relaxation and stress relief."
         },
-        facialTreatments: {
-          title: "Facial Treatments",
-          desc: "Deep Cleansing Facial: Customized to remove impurities.\n\nMeridian Detox Facial: Focused on blood circulation and lymphatic drainage.\n\nDeluxe Meridian Full Set: Comprehensive meridian facial care."
+        traditionalCupping: {
+          title: "Traditional Cupping",
+          desc: "An ancient practice that creates local suction on the skin. It is used to promote blood flow, draw out toxins, and accelerate the body's natural healing process."
         }
       }
     },
@@ -87,7 +86,6 @@ export const translations = {
       map: "地图"
     },
     hero: {
-      subtitle: "宁静的避风港",
       title: "新红灯笼\n足浴",
       description: "在巴比伦中心体验正宗的亚洲足底按摩和身体护理。恢复平衡，焕发精神。",
       navigate: "导航",
@@ -95,24 +93,24 @@ export const translations = {
     },
     services: {
       title: "我们的服务",
-      description: "我们将传统技术与现代放松疗法相结合，为您提供专业的护理服务。",
+      description: "我们专注于历史悠久的亚洲理疗技术，旨在促进康复、血液循环和全身放松。",
       note: "欢迎光临，建议提前预约以确保有位。",
       items: {
-        aromatherapy: {
-          title: "香薰疗法",
-          desc: "1小时疗程（身体或足部）。\n\n香型：杏无花果、法国玫瑰、茉莉栀子花。\n\n功效：增强免疫力，改善睡眠，减轻压力，帮助排毒。"
+        footReflexology: {
+          title: "正宗足底按摩",
+          desc: "经典的足部穴位疗法。通过刺激特定的反射区，帮助平衡身体能量并改善器官功能。"
         },
-        massageCombos: {
-          title: "特色按摩套餐",
-          desc: "套餐 A：60分钟身体 + 30分钟足部 + 手膜\n套餐 B：30分钟身体 + 30分钟足部 + 手膜\n套餐 C：45分钟身体 + 45分钟足部 + 手膜/眼膜"
+        bodyWork: {
+          title: "全身深层推拿",
+          desc: "结合传统推拿技术的理疗性身体按摩。专注于肌肉结节和张力，以恢复活动能力并缓解慢性疼痛。"
         },
-        massageFacial: {
-          title: "按摩与面部护理套餐",
-          desc: "套餐 D：30分钟足部 + 30分钟面部\n套餐 E：30分钟身体 + 30分钟面部\n套餐 F：60分钟身体 + 30分钟面部\n套餐 G：60分钟身体 + 30分钟足部 + 30分钟面部"
+        hotStone: {
+          title: "热石疗法",
+          desc: "将光滑、加热的玄武岩放置在身体的关键点。热量深入渗透肌肉层，带来深层放松和压力缓解。"
         },
-        facialTreatments: {
-          title: "面部护理",
-          desc: "深层清洁面部：去除杂质和死皮。\n\n经络排毒面部：专注于血液循环和淋巴引流。\n\n豪华经络全套：全面的经络面部护理。"
+        traditionalCupping: {
+          title: "传统拔罐",
+          desc: "一种在皮肤上产生局部吸力的古老做法。用于促进血液循环、排出毒素并加速身体的自然愈合过程。"
         }
       }
     },
@@ -137,7 +135,7 @@ export const translations = {
         Wednesday: "周三",
         Thursday: "周四",
         Friday: "周五",
-        Saturday: "周六",
+        Saturday: "周日",
         Sunday: "周日"
       },
       openSevenDays: "每周 7 天营业，为您提供便利。",

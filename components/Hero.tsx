@@ -19,31 +19,28 @@ const Hero: React.FC = () => {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance carousel every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
     const index = parseInt(target.getAttribute('data-index') || '0');
-    
-    // If the provided image fails, switch to the reliable Unsplash fallback
     if (!target.src.includes('unsplash')) {
         target.src = FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
     }
   };
 
   return (
-    <section id="home" className="relative h-[75vh] flex items-center justify-center bg-lantern-black overflow-hidden">
+    <section id="home" className="relative h-screen h-[100dvh] flex items-center justify-center bg-lantern-black overflow-hidden">
       {/* Background Carousel */}
       {HERO_IMAGES.map((img, index) => (
         <div 
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 transition-opacity duration-[1500ms] ease-in-out ${
             index === currentIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
           }`}
         >
@@ -51,71 +48,71 @@ const Hero: React.FC = () => {
             src={img} 
             data-index={index}
             alt={`Spa Ambience ${index + 1}`} 
-            className={`w-full h-full object-cover transition-transform duration-[4000ms] ease-linear ${
+            className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-out ${
               index === currentIndex ? 'scale-110' : 'scale-100'
             }`}
             onError={handleImageError}
           />
-          {/* Advanced Overlay: Dark gradient at top/bottom, clear in middle */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/80"></div>
+          {/* Dynamic Vignette Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-lantern-black via-transparent to-lantern-black/60"></div>
+          <div className="absolute inset-0 bg-lantern-red/10 mix-blend-overlay"></div>
         </div>
       ))}
 
-      {/* Navigation Dots */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-4">
-        {HERO_IMAGES.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              index === currentIndex ? 'bg-lantern-red w-10' : 'bg-white/30 w-3 hover:bg-white/50'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      {/* Floating Ambient Glows */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-lantern-red/30 rounded-full blur-[100px] animate-lantern-glow"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-lantern-gold/20 rounded-full blur-[120px] animate-lantern-glow [animation-delay:3s]"></div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto w-full">
-        <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-bold mb-6 leading-[1.1] animate-fade-in-up opacity-0 [animation-delay:400ms] tracking-tight drop-shadow-2xl">
+      <div className="relative z-10 text-center text-white px-6 max-w-6xl mx-auto w-full pt-10 sm:pt-20">
+        <h1 className="font-serif text-5xl sm:text-8xl md:text-9xl font-black mb-6 sm:mb-8 leading-[1.1] sm:leading-[1] animate-fade-in-up opacity-0 [animation-delay:200ms] tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
           {t('hero.title').split('\n').map((line, i) => (
             <React.Fragment key={i}>
-              {line}
+              <span className={i === 0 ? 'text-white' : 'text-lantern-red'}>{line}</span>
               {i === 0 && <br className="hidden sm:block" />}
             </React.Fragment>
           ))}
         </h1>
         
-        <p className="font-sans text-lg sm:text-2xl text-gray-100 mb-12 max-w-2xl mx-auto font-light animate-fade-in-up opacity-0 [animation-delay:600ms] leading-relaxed drop-shadow-lg">
+        <p className="font-sans text-base sm:text-2xl text-gray-200 mb-8 sm:mb-14 max-w-2xl mx-auto font-light animate-fade-in-up opacity-0 [animation-delay:400ms] leading-relaxed drop-shadow-md">
           {t('hero.description')}
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-5 justify-center items-center animate-fade-in-up opacity-0 [animation-delay:800ms]">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-fade-in-up opacity-0 [animation-delay:600ms] mb-16 sm:mb-0">
           <a 
             href={`tel:${BUSINESS_INFO.phone}`}
-            className="w-full sm:w-auto px-12 py-5 bg-lantern-red text-white font-bold rounded-full hover:bg-white hover:text-lantern-red hover:scale-105 transition-all duration-300 shadow-[0_10px_30px_rgba(214,0,0,0.3)] flex items-center justify-center gap-3 border-2 border-lantern-red text-lg uppercase tracking-wider"
+            className="group w-full sm:w-64 px-10 py-4 sm:py-5 bg-lantern-red text-white font-black rounded-full hover:bg-white hover:text-lantern-red transition-all duration-500 shadow-[0_20px_40px_rgba(214,0,0,0.4)] flex items-center justify-center gap-3 border-2 border-lantern-red text-xs sm:text-sm uppercase tracking-widest overflow-hidden relative"
           >
-            <Phone size={22} />
-            {t('nav.call')}
+            <span className="relative z-10 flex items-center gap-3">
+                <Phone size={18} strokeWidth={3} />
+                {t('nav.call')}
+            </span>
+            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
           <a 
             href={BUSINESS_INFO.mapsUrl}
             target="_blank"
             rel="noreferrer"
-            className="w-full sm:w-auto px-12 py-5 border-2 border-white/60 text-white font-bold rounded-full hover:bg-white hover:text-lantern-black hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 backdrop-blur-md text-lg uppercase tracking-wider"
+            className="w-full sm:w-64 px-10 py-4 sm:py-5 border-2 border-white/40 text-white font-black rounded-full hover:bg-white hover:text-lantern-black transition-all duration-500 flex items-center justify-center gap-3 backdrop-blur-lg text-xs sm:text-sm uppercase tracking-widest shadow-2xl"
           >
-            <MapPin size={22} />
+            <MapPin size={18} strokeWidth={3} />
             {t('hero.navigate')}
           </a>
         </div>
-        
-        <div className="mt-12 text-sm sm:text-base text-white/90 font-medium flex items-center justify-center gap-3 animate-fade-in-up opacity-0 [animation-delay:1000ms]">
-            <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-            {t('hero.openToday')}
-        </div>
+      </div>
+
+      {/* Slide Navigation (Vertical Style) */}
+      <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-4 sm:gap-6">
+        {HERO_IMAGES.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-0.5 sm:w-1 transition-all duration-500 rounded-full ${
+              index === currentIndex ? 'bg-lantern-red h-8 sm:h-12' : 'bg-white/20 h-3 sm:h-4 hover:bg-white/50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
